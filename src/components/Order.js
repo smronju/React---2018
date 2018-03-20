@@ -1,9 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Order extends Component {
-  render() {
-    return <div className="order">Order Component</div>;
-  }
-}
+const Order = () => <div className="order">Order Component</div>;
 
 export default Order;
