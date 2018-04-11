@@ -5,7 +5,12 @@ class Order extends React.Component {
   renderOrder = key => {
     const fish = this.props.fishes[key];
     const count = this.props.order[key];
-    const isAvailable = fish.status === 'available';
+
+    // Check if fish availabe
+    const isAvailable = fish && fish.status === 'available';
+
+    // Make sure fish is loaded into state from firebase
+    if (!fish) return null;
 
     if (!isAvailable) {
       return <li key={key}> Sorry {fish ? fish.name : 'fish'} is no longer available</li>;
