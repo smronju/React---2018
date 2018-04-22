@@ -3,7 +3,7 @@ import { formatPrice } from '../helpers';
 
 class Fish extends React.Component {
   handleClick = () => {
-    this.props.addToCart(this.props.index);
+    this.props.addToOrder(this.props.index);
   };
 
   render() {

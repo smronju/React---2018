@@ -54,17 +54,33 @@ class App extends Component {
     this.setState({ fishes });
   };
 
+  deleteFish = key => {
+    // 1. Take a copy of existing state
+    const fishes = { ...this.state.fishes };
+    // 2. Remove the fish
+    fishes[key] = null;
+    // 3. Set the state
+    this.setState({ fishes });
+  };
+
   loadSampleFishes = () => {
     this.setState({ fishes: sampleFishes });
   };
 
-  addToCart = key => {
+  addToOrder = key => {
     // 1. Take a copy of existing order state
     const order = { ...this.state.order };
-
     // 2. Either add the item to cart, or update the number in our cart
     order[key] = order[key] + 1 || 1;
+    // 3. Update the state object
+    this.setState({ order });
+  };
 
+  removeFromOrder = key => {
+    // 1. Take a copy of existing order state
+    const order = { ...this.state.order };
+    // 2. Remove item from cart
+    delete order[key];
     // 3. Update the state object
     this.setState({ order });
   };
@@ -77,15 +93,17 @@ class App extends Component {
 
           <ul className="fishes">
             {Object.keys(this.state.fishes).map(key => (
-              <Fish key={key} index={key} fish={this.state.fishes[key]} addToCart={this.addToCart} />
+              <Fish key={key} index={key} fish={this.state.fishes[key]} addToOrder={this.addToOrder} />
             ))}
           </ul>
         </div>
 
-        <Order fishes={this.state.fishes} order={this.state.order} />
+        <Order fishes={this.state.fishes} order={this.state.order} removeFromOrder={this.removeFromOrder} />
+
         <Inventory
           addFish={this.addFish}
           updateFish={this.updateFish}
+          deleteFish={this.deleteFish}
           loadSampleFishes={this.loadSampleFishes}
           fishes={this.state.fishes}
         />
