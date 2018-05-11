@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class EditFishForm extends React.Component {
   handleChange = event => {
@@ -26,5 +27,12 @@ class EditFishForm extends React.Component {
     );
   }
 }
+
+EditFishForm.propTypes = {
+  fish: PropTypes.object.isRequired,
+  index: PropTypes.string.isRequired,
+  updateFish: PropTypes.func.isRequired,
+  deleteFish: PropTypes.func.isRequired,
+};
 
 export default EditFishForm;
